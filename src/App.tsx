@@ -1,26 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
+import {Todolist} from './Todolist';
+
+export type FilterKeyType = 'all' | 'active' | 'completed'
 
 function App() {
+    /*  let tasks = [
+          {id: 1, title: "HTML&CSS", isDone: true},
+          {id: 2, title: "JS", isDone: true},
+          {id: 3, title: "ReactJS", isDone: false}
+      ]*/
+
+    let [tasks, setTasks] = useState([
+        {id: 1, title: "HTML&CSS", isDone: true},
+        {id: 2, title: "JS", isDone: true},
+        {id: 3, title: "ReactJS", isDone: false}
+    ])
+
+  /*  let [globalFilterKey, setglobalFilterKey] = useState('all')*/
+
+    const removeTask = (taskId: number) => {
+        //tasks = tasks.filter(el => el.id !== taskId)
+        //setTasks(tasks)
+
+        setTasks(tasks.filter(el => el.id !== taskId))
+    }
+
+ /*   const tasksFilter = (filterKey: FilterKeyType) => {
+        setglobalFilterKey(filterKey)
+    }
+    let collander = tasks
+    if (globalFilterKey === "active") {
+        collander = tasks.filter(el => el.isDone)
+    }
+    if (globalFilterKey === "completed") {
+        collander = tasks.filter(el => !el.isDone)
+    }*/
+
+
     return (
         <div className="App">
-            <div>
-                <h3>What to learn</h3>
-                <div>
-                    <input/>
-                    <button>+</button>
-                </div>
-                <ul>
-                    <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
-                    <li><input type="checkbox" checked={true}/> <span>JS</span></li>
-                    <li><input type="checkbox" checked={false}/> <span>React</span></li>
-                </ul>
-                <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
-                </div>
-            </div>
+            <Todolist
+                title="What to learn"
+                tasks={tasks}
+                removeTask={removeTask}
+
+            />
         </div>
     );
 }
