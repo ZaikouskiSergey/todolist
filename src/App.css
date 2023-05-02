@@ -4,7 +4,7 @@
 }
 
 .App > div {
-  margin-right: 50px;
+  margin-right: 30px;
 }
 .todolist {
   border: 2px solid teal;
@@ -12,7 +12,6 @@
   border-radius: 5px;
   padding: 15px;
 }
-
 .task {
   font-weight: bold;
   margin-left: 5px;
@@ -55,6 +54,13 @@ h2 {
   display:flex;
   align-items: baseline;
   gap: 4px;
+}
+.add-form{
+  max-height: 50px;
+  border: 2px solid teal;
+  background-color: darkseagreen;
+  border-radius: 5px;
+  padding: 15px;
 }
 
 
