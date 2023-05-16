@@ -1,34 +1,30 @@
-import {ChangeEvent, FC, useState} from "react";
+import TextField from '@mui/material/TextField/TextField';
+import React, {ChangeEvent, useState} from 'react';
 
-export type EditableSpanPropsType = {
-    title: string
-    classes?: string
-    changeTitle: (title: string) => void
+
+type EditableSpanPropsType = {
+    value: string
+    onChange: (newValue: string) => void
 }
-export const EditableSpan: FC<EditableSpanPropsType> = ({title, classes,changeTitle}) => {
-    const [isEditMode, setIsEditMode] = useState<boolean>(false)
-    const [localTitle, setLocalTitle] = useState<string>(title)
-    const onEditMode = () => setIsEditMode(true)
-    const offEditMode = () => {
-        changeTitle(localTitle)
-        setIsEditMode(false)
+
+export function EditableSpan(props: EditableSpanPropsType) {
+    let [editMode, setEditMode] = useState(false);
+    let [title, setTitle] = useState(props.value);
+
+    const activateEditMode = () => {
+        setEditMode(true);
+        setTitle(props.value);
     }
-    const setLocalTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setLocalTitle(e.currentTarget.value)
+    const activateViewMode = () => {
+        setEditMode(false);
+        props.onChange(title);
+    }
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
     }
 
-    return (
-        isEditMode
-            ? <input
-                value={localTitle}
-                autoFocus
-                onBlur={offEditMode}
-                onChange={setLocalTitleHandler}
-            />
-            : <span
-                onDoubleClick={onEditMode}
-                className={classes}
-            >{title}</span>
-
-    )
+    return editMode
+        ?    <TextField variant="outlined"
+                        value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
+        : <span onDoubleClick={activateEditMode}>{props.value}</span>
 }
