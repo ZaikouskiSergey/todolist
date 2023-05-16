@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {changeTodoListFilterAC, removeTodoListAC, todoListsReducer} from "./reducers/TodoListsReducer";
 
 
 //CRUD
@@ -11,7 +12,7 @@ import {AddItemForm} from "./AddItemForm";
 //U-update
 //D-delete
 
-type TodoListType = {
+export type TodoListType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -28,7 +29,7 @@ function App() {
     const todoListId_1 = v1()
     const todoListId_2 = v1()
 
-    const [todoLists, setTodoLists] = useState<TodoListType[]>([
+    const [todoLists, dispatchTodoLists] = useReducer(todoListsReducer,[
         {id: todoListId_1, title: "What to learn", filter: "all"},
         {id: todoListId_2, title: "What to buy", filter: "all"},
     ])
@@ -45,7 +46,6 @@ function App() {
             {id: v1(), title: "BREAD", isDone: false}
         ],
     })
-
     const removeTask = (taskId: string, todoListId: string) => {
         const updatedTasks = tasks[todoListId].filter(t => t.id !== taskId)
         setTasks({...tasks, [todoListId]: updatedTasks})
@@ -73,18 +73,13 @@ function App() {
         )
         setTasks({...tasks, [todoListId]: updatedTasks})}
 
-
     const changeTodoListFilter = (nextFilter: FilterValuesType, todoListId: string) => {
-        setTodoLists(todoLists.map(tl => tl.id === todoListId
-            ? {...tl, filter: nextFilter}
-            : tl
-        ))
+        dispatchTodoLists(changeTodoListFilterAC(nextFilter, todoListId))
     }
 
     const removeTodoList = (todoListId: string) => {
-        setTodoLists(todoLists.filter(tl => tl.id !== todoListId))
+        dispatchTodoLists(removeTodoListAC(todoListId))
         delete tasks[todoListId]
-
     }
     const addTodoLIst = (title: string) => {
         const newTodo: TodoListType = {
