@@ -48,7 +48,6 @@ function AppWithReducers() {
         ]
     });
 
-
     function removeTask(id: string, todolistId: string) {
         dispatchTasks(removeTaskAC(id, todolistId))
     }
@@ -70,8 +69,9 @@ function AppWithReducers() {
     }
 
     function removeTodolist(id: string) {
-        dispatchTodolists(RemoveTodolistAC(id))
-        dispatchTasks(RemoveTodolistAC(id))
+        let action = RemoveTodolistAC(id)
+        dispatchTodolists(action)
+        dispatchTasks(action)
     }
 
     function changeTodolistTitle(id: string, title: string) {
