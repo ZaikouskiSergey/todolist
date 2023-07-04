@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css';
-import { Todolist } from './Todolist';
-import { AddItemForm } from './AddItemForm';
+import {Todolist} from './Todolist';
+import {AddItemForm} from './AddItemForm';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -10,21 +10,19 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { Menu } from '@mui/icons-material';
+import {Menu} from '@mui/icons-material';
 import {
     addTodolistTC,
     changeTodolistFilterAC,
-    changeTodolistTitleTC, deleteTodolistTC,
-    FilterValuesType, getTodolistsTC,
+    changeTodolistTitleTC,
+    deleteTodolistTC,
+    FilterValuesType,
+    getTodolistsTC,
     TodolistDomainType
 } from './state/todolists-reducer'
-import {
-    createTasksTC,
-    deleteTasksTC, updateTaskTC
-}
-    from './state/tasks-reducer';
-import {useSelector } from 'react-redux';
-import { AppRootStateType } from './state/store';
+import {createTasksTC, deleteTasksTC, updateTaskTC} from './state/tasks-reducer';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
 import {TaskStatuses, TaskType} from './api/todolists-api'
 import {useAppDispatch} from "./hooks/hooks";
 
