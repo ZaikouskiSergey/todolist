@@ -14,23 +14,26 @@ import {Menu} from '@mui/icons-material';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Login} from "../features/Login/Login";
-import {initializeAppTC} from "../features/Login/login-reducer";
+import {initializeAppTC, logOutTC} from "../features/Login/auth-reducer";
 import {CircularProgress} from "@mui/material";
+import {useSelector} from "react-redux";
 
 
 function App() {
     const status = useAppSelector<RequestStatusType>((state) => state.app.status)
     const isInitialized = useAppSelector<boolean>((state) => state.app.isInitialized)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state=> state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(initializeAppTC())
     }, [])
-    const logOutHandler=()=>{
+    const logOutHandler = () => {
+        dispatch(logOutTC())
 
     }
 
-   if (!isInitialized) {
+    if (!isInitialized) {
         return <div
             style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
             <CircularProgress/>
@@ -40,14 +43,14 @@ function App() {
         <div className="App">
             <ErrorSnackbar/>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar className={'app_header'}>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
                         News
                     </Typography>
-                    <Button color="inherit">Log out</Button>
+                    {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Log Out</Button>}
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>
@@ -56,7 +59,7 @@ function App() {
                     <Route path='/' element={<TodolistsList/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path="/404" element={<h1> 404 : Page not found</h1>}/>
-                    <Route path='*' element={<Navigate to = '/404'/>} />
+                    <Route path='*' element={<Navigate to='/404'/>}/>
                 </Routes>
             </Container>
         </div>

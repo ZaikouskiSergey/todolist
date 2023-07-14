@@ -24,3 +24,7 @@
   opacity: 0.5;
 }
 */
+.app_header{
+    display: flex;
+    justify-content: space-between;
+}
