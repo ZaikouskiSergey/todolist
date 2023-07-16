@@ -30,7 +30,6 @@ function App() {
     }, [])
     const logOutHandler = () => {
         dispatch(logOutTC())
-
     }
 
     if (!isInitialized) {
