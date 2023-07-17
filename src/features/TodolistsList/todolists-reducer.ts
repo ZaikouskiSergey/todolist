@@ -9,7 +9,6 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
             return state.filter(tl => tl.id !== action.id)
         case 'ADD-TODOLIST':
             return [{...action.todolist, filter: 'all', entityStatus: 'idle'}, ...state]
-
         case 'CHANGE-TODOLIST-TITLE':
             return state.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
         case 'CHANGE-TODOLIST-FILTER':
@@ -22,7 +21,6 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
             return state
     }
 }
-
 // actions
 export const removeTodolistAC = (id: string) => ({type: 'REMOVE-TODOLIST', id} as const)
 export const addTodolistAC = (todolist: TodolistType) => ({type: 'ADD-TODOLIST', todolist} as const)
