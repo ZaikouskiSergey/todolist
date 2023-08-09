@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import './App.css'
-import {TodolistsList} from '../features/TodolistsList/TodolistsList'
+import {TodolistsList} from 'features/TodolistsList/TodolistsList'
 import {AppRootStateType, useAppDispatch, useAppSelector} from './store'
 import {RequestStatusType} from './app-reducer'
 import AppBar from '@mui/material/AppBar';
@@ -11,10 +11,10 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
 import {Menu} from '@mui/icons-material';
-import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
+import {ErrorSnackbar} from 'components/ErrorSnackbar/ErrorSnackbar'
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Login} from "../features/Login/Login";
-import {initializeAppTC, logOutTC} from "../features/Login/auth-reducer";
+import {Login} from "features/Login/Login";
+import {initializeAppTC, logOutTC} from "features/Login/auth-reducer";
 import {CircularProgress} from "@mui/material";
 import {useSelector} from "react-redux";
 
@@ -64,5 +64,4 @@ function App() {
         </div>
     )
 }
-
 export default App

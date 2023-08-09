@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react'
-import {AppRootStateType, useAppDispatch, useAppSelector} from '../../app/store'
+import {AppRootStateType, useAppDispatch, useAppSelector} from 'app/store'
 import {
     addTodolistTC,
     changeTodolistFilterAC,
@@ -10,10 +10,10 @@ import {
     TodolistDomainType
 } from './todolists-reducer'
 import {addTaskTC, removeTaskTC, TasksStateType, updateTaskTC} from './tasks-reducer'
-import {TaskStatuses} from '../../api/todolists-api'
+import {TaskStatuses} from 'api/todolists-api'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
+import {AddItemForm} from 'components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
