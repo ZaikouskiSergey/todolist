@@ -7,7 +7,6 @@ type AddItemFormPropsType = {
     addItem: (title: string) => void
     disabled?: boolean
 }
-
 export const AddItemForm = React.memo(function ({addItem, disabled = false}: AddItemFormPropsType) {
     console.log('AddItemForm called')
 
@@ -22,11 +21,9 @@ export const AddItemForm = React.memo(function ({addItem, disabled = false}: Add
             setError('Title is required');
         }
     }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (error !== null) {
             setError(null);
