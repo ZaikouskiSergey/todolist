@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
@@ -19,8 +19,9 @@ type FormikErrorType = {
     rememberMe?: boolean
 }
 export const Login = () => {
+    const [showAssistance, setShowAssistance] = useState<boolean>(false)
     const dispatch = useAppDispatch()
-    const isLoggedIn = useSelector<AppRootStateType>(state=> state.auth.isLoggedIn)
+    const isLoggedIn = useSelector<AppRootStateType>(state => state.auth.isLoggedIn)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -46,21 +47,26 @@ export const Login = () => {
             formik.resetForm()
         },
     })
-    if(isLoggedIn) return <Navigate to={'/'}/>
+    if (isLoggedIn) return <Navigate to={'/'}/>
 
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormLabel>
-                        <p>To log in get registered
-                            <a href={'https://social-network.samuraijs.com/'}
-                               target={'_blank'}> here
-                            </a>
-                        </p>
-                        <p>or use common test account credentials:</p>
-                        <p>Email: free@samuraijs.com</p>
-                        <p>Password: free</p>
+                        <div style={{marginTop: '15px', cursor:'pointer' }} onClick={() => setShowAssistance(!showAssistance)}>
+                            {!showAssistance && <span>click here to get assistance </span>}
+                            {showAssistance && <div>
+                                <p>To log in get registered
+                                    <a href={'https://social-network.samuraijs.com/'}
+                                       target={'_blank'}> here
+                                    </a>
+                                </p>
+                                <p>or use common test account credentials:</p>
+                                <p>Email: free@samuraijs.com</p>
+                                <p>Password: free</p>
+                            </div>}
+                        </div>
                     </FormLabel>
                     <FormGroup>
                         <TextField
@@ -75,10 +81,7 @@ export const Login = () => {
                             label="Password"
                             margin="normal"
                             {...formik.getFieldProps('password')}
-                            // name='password'
-                            // onBlur={formik.handleBlur}
-                            // onChange={formik.handleChange}
-                            // value={formik.values.password}
+
                         />
                         {formik.touched.password && formik.errors.password ?
                             <div style={{color: 'red'}}>{formik.errors.password}</div> : null}

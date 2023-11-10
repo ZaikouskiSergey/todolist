@@ -17,8 +17,6 @@ import {Login} from "features/Login/Login";
 import {initializeAppTC, logOutTC} from "features/Login/auth-reducer";
 import {CircularProgress} from "@mui/material";
 import {useSelector} from "react-redux";
-
-
 function App() {
     const status = useAppSelector<RequestStatusType>((state) => state.app.status)
     const isInitialized = useAppSelector<boolean>((state) => state.app.isInitialized)
@@ -46,9 +44,9 @@ function App() {
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
-                    <Typography variant="h6">
-                        News
-                    </Typography>
+                    {/*<Typography variant="h6">*/}
+                    {/*    News*/}
+                    {/*</Typography>*/}
                     {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Log Out</Button>}
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
