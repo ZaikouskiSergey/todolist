@@ -54,8 +54,8 @@ export const Login = () => {
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormLabel>
-                        <div style={{marginTop: '15px', cursor:'pointer' }} onClick={() => setShowAssistance(!showAssistance)}>
-                            {!showAssistance && <span>click here to get assistance </span>}
+                        <div style={{marginTop: '15px'}} >
+                            {!showAssistance && <span style={{marginTop: '15px', cursor:'pointer' }} onClick={() => setShowAssistance(!showAssistance)}>click here to get assistance </span>}
                             {showAssistance && <div>
                                 <p>To log in get registered
                                     <a href={'https://social-network.samuraijs.com/'}
