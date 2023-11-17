@@ -1,4 +1,4 @@
-# It's [my project](https://todolist-gyt67q1jw-zaikouskisergey.vercel.app/login)
+
 
 # Getting Started with Create React App
 
