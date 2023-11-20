@@ -2,7 +2,7 @@
   "name": "todo15v3",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zaikouskisergey.github.io/todolist/",
+  "homepage": "https://ZaikouskiSergey.github.io/todolist/",
   "dependencies": {
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
